@@ -9,3 +9,6 @@ interactive:
 
 server:
 	docker run -d -p 5024:5000 --rm --name qiime2metabolomicsserver qiime2metabolomicsserver /app/run_production_server.sh
+
+attach:
+	docker exec -i -t  qiime2metabolomicsserver /bin/bash
