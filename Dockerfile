@@ -12,7 +12,7 @@ RUN pip install requests-cache
 RUN pip install gunicorn
 RUN pip install xmltodict
 RUN apt-get install -y unzip
-RUN wget https://github.com/mwang87/q2_metabolomics/archive/1.zip && unzip 1.zip && cd q2_metabolomics-1 && pip install .
+RUN wget https://github.com/mwang87/q2_metabolomics/archive/1.zip && unzip 1.zip && cd q2_metabolomics-2 && pip install .
 
 COPY . /app
 WORKDIR /app
