@@ -15,4 +15,9 @@ RUN apt-get install -y unzip
 RUN wget https://github.com/mwang87/q2_metabolomics/archive/2.zip && unzip 2.zip && cd q2_metabolomics-2 && pip install .
 
 COPY . /app
+
+RUN pip install metabodisttrees
+RUN pip install obonet
+RUN cd /app/q2-metabodisttrees && pip install .  
+
 WORKDIR /app
