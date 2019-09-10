@@ -1,0 +1,5 @@
+#SampleID	BarcodeSequence	LinkerPrimerSequence	filename	ATTRIBUTE_GNPSDefaultGroup
+DSM4950_MeOH_ziptip_data_dependent.mzXML	GATACA	GATACA	DSM4950_MeOH_ziptip_data_dependent.mzXML	G2
+15998_nBuOH_FT_test01.mzXML	GATACA	GATACA	15998_nBuOH_FT_test01.mzXML	G1
+DSM4950_BuOH_ziptip_data_dependent.mzXML	GATACA	GATACA	DSM4950_BuOH_ziptip_data_dependent.mzXML	G2
+0518_s_BuOH.mzXML	GATACA	GATACA	0518_s_BuOH.mzXML	G1

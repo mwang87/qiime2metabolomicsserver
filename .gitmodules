@@ -1,0 +1,3 @@
+[submodule "q2-metabodisttrees"]
+	path = q2-metabodisttrees
+	url = git@github.com:madeleineernst/q2-metabodisttrees.git
