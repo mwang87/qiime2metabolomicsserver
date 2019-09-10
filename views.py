@@ -8,11 +8,13 @@ import csv
 import json
 import uuid
 import requests
+import MetaboDistTrees
 
 @app.route('/', methods=['GET'])
 def renderhomepage():
     return render_template('index.html')
 
+#Handles the FBMN Output
 @app.route('/process', methods=['POST'])
 def processmzmine():
     metadata_file = request.files['metadata']
@@ -58,11 +60,16 @@ def processmzmine():
 
     return json.dumps(response_dict)
 
+#Handles the Classical Networking Output
 @app.route('/processclassic', methods=['POST'])
 def processclassic():
     metadata_file = request.files['metadata']
     quantification_file = request.files['bucket']
     manifest_file = request.files['manifest']
+
+    distance_metric = "cosine"
+    if "distance" in request.values:
+        distance_metric = request.values["distance"]
 
     uuid_prefix = str(uuid.uuid4())
 
@@ -81,10 +88,16 @@ def processclassic():
 
     all_cmd = []
     all_cmd.append("qiime metabolomics import-gnpsnetworkingclusteringbuckettable --p-manifest %s --p-buckettable %s --o-feature-table %s" % (local_manifest_filename, local_quantification_filename, local_qza_table))
-    all_cmd.append("qiime diversity beta \
-    --i-table %s \
-    --p-metric cosine \
-    --o-distance-matrix %s" % (local_qza_table, local_qza_distance))
+
+    if distance_metric == "cosine":
+        all_cmd.append("qiime diversity beta \
+        --i-table %s \
+        --p-metric cosine \
+        --o-distance-matrix %s" % (local_qza_table, local_qza_distance))
+    elif distance_metric == "metabodisttree":
+        print("MetaboDistTree")
+
+    
     all_cmd.append("qiime diversity pcoa \
     --i-distance-matrix %s \
     --o-pcoa %s" % (local_qza_distance, local_qza_pcoa))
